@@ -21,7 +21,7 @@ jobs:
             - name: download artifacts 
               uses: actions/download-artifact@v3
               with:
-                name: cowsay 
+                name: show.txt
             - name: display the file 
               run: cat show.txt  
     third-job: 
@@ -31,7 +31,6 @@ jobs:
             - name: download artifacts 
               uses: actions/download-artifact@v4
               with:
-                name: cowsay
-
+                name: show.txt
             - name: list files 
               run: ls -altr    
