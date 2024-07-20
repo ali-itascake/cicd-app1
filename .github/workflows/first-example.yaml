@@ -6,6 +6,8 @@ jobs:
     first-job: 
         runs-on: ubuntu-latest
         steps:
+            - name: checkout 
+              uses: actions/checkout@v4
             - name: salam alaykoum
               run: echo "Salam alaykoum"
             - name: list files 
