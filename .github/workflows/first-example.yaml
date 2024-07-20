@@ -9,7 +9,9 @@ jobs:
             - name: checkout 
               uses: actions/checkout@v4
             - name: salam alaykoum
-              run: echo "Salam alaykoum"
+              run: |
+               echo "Salam alaykoum"
+               echo "Wa alaykoum assalam"
             - name: list files 
               run: ls
             - name: display file 
