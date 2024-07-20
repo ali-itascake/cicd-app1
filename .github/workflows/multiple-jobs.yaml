@@ -1,0 +1,38 @@
+name: test multiple jobs 
+on: push 
+
+jobs: 
+    first-job: 
+        runs-on: ubuntu-latest
+        steps:
+            - name: install cowsay 
+              run: sudo apt install cowsay
+            - name: generate cowsay 
+              run: cowsay  'Hello, world!' > show.txt  
+            - name: upload artifacts  
+              uses: actions/upload-artifact@v4
+              with:
+                 name: cowsay
+                 path: show.txt
+    second-job: 
+        needs: first-job
+        runs-on: ubuntu-latest
+        steps: 
+            - name: download artifacts 
+              uses: actions/download-artifact@v4
+              with:
+                name: download
+                path: show.txt 
+            - name: display the file 
+              run: cat show.txt  
+    third-job: 
+        needs: [first-job,second-job]
+        runs-on: ubuntu-latest 
+        steps: 
+            - name: download artifacts 
+              uses: actions/download-artifact@v4
+              with:
+                name: download
+                path: show.txt
+            - name: list files 
+              run: ls -altr    
