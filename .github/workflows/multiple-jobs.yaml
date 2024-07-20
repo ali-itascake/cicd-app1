@@ -3,7 +3,10 @@ on: push
 env: 
     FILE_TO_DOWNLOAD: cowsay 
 jobs: 
-    first-job: 
+    first-job:
+        concurrency: 
+            cancel-in-progress: true
+            group: first-job
         runs-on: ubuntu-latest
         steps:
             - name: install cowsay 
