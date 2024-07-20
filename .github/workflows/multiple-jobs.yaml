@@ -12,7 +12,7 @@ jobs:
             - name: install cowsay 
               run: sudo apt install cowsay
             - name: generate cowsay 
-              run: cowsay  'Hello, world!' > show.txt 
+              run: cowsay  'Hello, worl!' > show.txt 
             - name: display 
               run: cat show.txt  
             - name: upload artifacts  
