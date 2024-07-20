@@ -1,0 +1,21 @@
+name: ascii job generator 
+on: push 
+
+jobs: 
+    ascii-job: 
+        runs-on: ubuntu-latest 
+        steps: 
+            - name: checkout the repo 
+              uses: actions/checkout@4
+
+            - name: install cowsay package 
+              run: sudo apt install cowsay 
+            - name: generate an animal 
+              run: cowsay 'Hello, world!' > show.txt 
+
+            - name: display show file 
+              run: cat show.txt     
+              
+
+              
+
