@@ -1,0 +1,17 @@
+name: ahlilou first workflow
+
+on: push 
+
+jobs: 
+    first-job: 
+        runs-on: ubuntu-latest
+        steps:
+            - name: salam alaykoum
+              run: echo "Salam alaykoum"
+            - name: list files 
+              run: ls
+            - name: display file 
+              run: cat README.md  
+              
+
+
