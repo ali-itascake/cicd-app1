@@ -1,7 +1,7 @@
 name: test multiple jobs 
-on: workflow_dispatch
+on: push
 env: 
-    FILE_TO_DOWNLOAD: show.txt 
+    FILE_TO_DOWNLOAD: cowsay 
 jobs: 
     first-job: 
         runs-on: ubuntu-latest
@@ -9,14 +9,14 @@ jobs:
             - name: install cowsay 
               run: sudo apt install cowsay
             - name: generate cowsay 
-              run: cowsay  'Hello, world!' > $FILE_TO_DOWNLOAD 
+              run: cowsay  'Hello, world!' > show.txt 
             - name: display 
-              run: cat $FILE_TO_DOWNLOAD  
+              run: cat show.txt  
             - name: upload artifacts  
               uses: actions/upload-artifact@v4
               with:
-                 name: cowsay
-                 path: $FILE_TO_DOWNLOAD 
+                 name: $FILE_TO_DOWNLOAD
+                 path: show.txt 
     second-job: 
         needs: first-job
         runs-on: ubuntu-latest
@@ -24,9 +24,9 @@ jobs:
             - name: download artifacts 
               uses: actions/download-artifact@v4
               with:
-                name: cowsay
+                name: $FILE_TO_DOWNLOAD
             - name: display the file 
-              run: cat $FILE_TO_DOWNLOAD  
+              run: cat show.txt  
     third-job: 
         needs: [first-job]
         runs-on: ubuntu-latest 
@@ -34,6 +34,6 @@ jobs:
             - name: download artifacts 
               uses: actions/download-artifact@v4
               with:
-                name: cowsay
+                name: $FILE_TO_DOWNLOAD
             - name: list files 
               run: ls -altr    
